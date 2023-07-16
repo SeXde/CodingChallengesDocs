@@ -19,11 +19,9 @@ public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {
                 IntStream
                         .range(1, numbers.size())
                         .mapToObj(i ->
-                                new ArrayList<>(
-                                        List.of(
-                                                numbers.get(i - 1),
-                                                numbers.get(i)
-                                        )
+                                List.of(
+                                        numbers.get(i - 1),
+                                        numbers.get(i)
                                 )
                         )
                         .map(pairList ->
