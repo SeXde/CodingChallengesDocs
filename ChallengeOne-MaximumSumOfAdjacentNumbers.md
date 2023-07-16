@@ -4,7 +4,7 @@
 
 Given a number list, we must find the **maximum** sum of all possible pairs present in the list.  
 For example, for the input `[2, 4, 1, 5, 6, 3, 11], the` result will be `14` since the pair `[3, 11]` sum is `14`.  
-The solution must be at least _O(n),_ and input can also be empty or null, so we must be aware of these weird cases.
+The solution must be at least _O(n),_ and input can also be *empty* or *null*, so we must be aware of these weird cases.
 
 ## Solution
 
