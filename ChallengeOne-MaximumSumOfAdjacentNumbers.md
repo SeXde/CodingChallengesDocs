@@ -18,18 +18,7 @@ public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {
         return
                 IntStream
                         .range(1, numbers.size())
-                        .mapToObj(i ->
-                                List.of(
-                                        numbers.get(i - 1),
-                                        numbers.get(i)
-                                )
-                        )
-                        .map(pairList ->
-                                pairList
-                                        .stream()
-                                        .mapToInt(Integer::intValue)
-                                        .sum()
-                        )
+                        .mapToObj(i -> numbers.get(i - 1) + numbers.get(i))
                         .max(Integer::compareTo)
                         .orElseThrow(() -> new InvalidParameterException("Cannot operate with items whose size is less than two."));
 
