@@ -22,7 +22,7 @@ public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {
                             new ArrayList<>(  
                                     List.of(  
                                             numbers.get(i - 1),  
-  numbers.get(i)  
+                                            numbers.get(i)  
                                     )  
                             )  
                     )  
