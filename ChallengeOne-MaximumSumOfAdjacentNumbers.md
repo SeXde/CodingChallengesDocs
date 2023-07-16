@@ -9,31 +9,31 @@ The solution must be at least _O(n),_ and input can also be *empty* or *null*, s
 ## Solution
 
 ````Java
-public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {  
-  
-    if (Objects.isNull(numbers)) {  
-        throw new InvalidParameterException("Number list cannot be null.");  
-  }  
-  
-    return  
-  IntStream  
-                    .range(1, numbers.size())  
-                    .mapToObj(i ->  
-                            new ArrayList<>(  
-                                    List.of(  
-                                            numbers.get(i - 1),  
-                                            numbers.get(i)  
-                                    )  
-                            )  
-                    )  
-                    .map(pairList ->  
-                            pairList  
-                                    .stream()  
-                                    .mapToInt(Integer::intValue)  
-                                    .sum()  
-                    )  
-                    .max(Integer::compareTo)  
-                    .orElseThrow(() -> new InvalidParameterException("Cannot operate with items whose size is less than two."));  
-  
-}
+public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {
+
+        if (Objects.isNull(numbers)) {
+            throw new InvalidParameterException("Number list cannot be null.");
+        }
+
+        return
+                IntStream
+                        .range(1, numbers.size())
+                        .mapToObj(i ->
+                                new ArrayList<>(
+                                        List.of(
+                                                numbers.get(i - 1),
+                                                numbers.get(i)
+                                        )
+                                )
+                        )
+                        .map(pairList ->
+                                pairList
+                                        .stream()
+                                        .mapToInt(Integer::intValue)
+                                        .sum()
+                        )
+                        .max(Integer::compareTo)
+                        .orElseThrow(() -> new InvalidParameterException("Cannot operate with items whose size is less than two."));
+
+    }
 ````
