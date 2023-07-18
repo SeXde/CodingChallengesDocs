@@ -12,36 +12,35 @@ The solution must be at least _O(n),_ and input can also be *empty* or *null*, s
 ````Java
 public static Integer getMaxSumOfAdjacentNumbers(final List<Integer> numbers) {
 
-        if (Objects.isNull(numbers)) {
-            throw new InvalidParameterException("Number list cannot be null.");
-        }
-
         return
-                IntStream
-                        .range(1, numbers.size())
-                        .mapToObj(i -> numbers.get(i - 1) + numbers.get(i))
-                        .max(Integer::compareTo)
-                        .orElseThrow(() -> new InvalidParameterException("Cannot operate with items whose size is less than two."));
-
+                Optional.ofNullable(numbers)
+                                .flatMap(list ->
+                                        IntStream
+                                                .range(1, numbers.size())
+                                                .boxed()
+                                                .map(i -> numbers.get(i - 1) + numbers.get(i))
+                                                .max(Integer::compareTo)
+                                )
+                        .orElseThrow(InvalidParameterException::new);
     }
 ````
 
 ### Parallelized version
 
 ```Java
-public static Integer getMaxSumOfAdjacentNumbersParallelized(final List<Integer> numbers) {
-
-        if (Objects.isNull(numbers)) {
-            throw new InvalidParameterException("Number list cannot be null.");
-        }
+ public static Integer getMaxSumOfAdjacentNumbersParallelized(final List<Integer> numbers) {
 
         return
-                IntStream
-                        .range(1, numbers.size())
-                        .parallel()
-                        .mapToObj(i -> numbers.get(i - 1) + numbers.get(i))
-                        .max(Integer::compareTo)
-                        .orElseThrow(() -> new InvalidParameterException("Cannot operate with items whose size is less than two."));
+                Optional.ofNullable(numbers)
+                        .flatMap(list ->
+                                IntStream
+                                        .range(1, numbers.size())
+                                        .boxed()
+                                        .parallel()
+                                        .map(i -> numbers.get(i - 1) + numbers.get(i))
+                                        .max(Integer::compareTo)
+                        )
+                        .orElseThrow(InvalidParameterException::new);
 
     }
 ```
